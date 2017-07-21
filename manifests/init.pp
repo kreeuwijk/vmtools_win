@@ -10,7 +10,7 @@ class vmtools_win (
 ){
   if (0 + $facts['vmtools_win_versionmajor']) > 0 {
     #Some version of VMware Tools must be installed...
-    notify {'An existing version of VMware Tools is currently installed, checking if it needs to be upgraded...':}
+    info ('An existing version of VMware Tools is currently installed, checking if it needs to be upgraded...')
     if $use_packages_vmware_com {
       #TBD logic for checking version against online
       #https://packages.vmware.com/tools/esx/latest/windows/index.html
@@ -18,23 +18,23 @@ class vmtools_win (
     else {
       #Check against self-provided VMware Tools installation package
       if $facts['vmtools_win_versionfull'] == $selfprovided_install_version {
-        notify {'Installed version is desired version -> no upgrade needed':}
+        info ('Installed version is desired version -> no upgrade needed')
         $upgrade_needed = false
       }
       else {
-        notify {'Installed version does not match desired version, determining if upgrade is needed...':}
+        info ('Installed version does not match desired version, determining if upgrade is needed...')
         if ($selfprovided_install_file) and ($selfprovided_install_version) {
           #Required parameters are provided, continue processing...
           if $minimum_major_version {
-            notify {'Minimum major version parameter provided, check major version against node...':}
+            info ('Minimum major version parameter provided, check major version against node...')
             if (0 + $facts['vmtools_win_versionmajor']) < $minimum_major_version {
               notify {'Installed VMware Tools is a lower major version vs the required minimum major version -> upgrade needed':}
               $upgrade_needed = true
             }
             elsif (0 + $facts['vmtools_win_versionmajor']) == $minimum_major_version {
-              notify {'Installed VMware Tools is the same major version vs the required minimum major version; check minor version...':}
+              info ('Installed VMware Tools is the same major version vs the required minimum major version; check minor version...')
               if $minimum_minor_version {
-                notify {'Minimum minor version parameter provided, check against node...':}
+                info ('Minimum minor version parameter provided, check against node...')
                 if (0 + $facts['vmtools_win_versionminor']) < $minimum_minor_version {
                   notify {'Installed VMware Tools is a lower minor version vs the required minimum minor version -> upgrade needed':}
                   $upgrade_needed = true
@@ -46,12 +46,12 @@ class vmtools_win (
                     $upgrade_needed = true
                   }
                   else {
-                    notify {'Installed VMware Tools is the same major and minor version, but a different build. $upgrade_if_same_major_minor is disabled -> no upgrade needed':}
+                    info ('Installed VMware Tools is the same major and minor version, but a different build. $upgrade_if_same_major_minor is disabled -> no upgrade needed')
                     $upgrade_needed = false
                   }
                 }
                 elsif (0 + $facts['vmtools_win_versionminor']) > $minimum_minor_version {
-                  notify {'Installed version is higher minor version vs the required minimum minor version -> no upgrade needed':}
+                  info ('Installed version is higher minor version vs the required minimum minor version -> no upgrade needed')
                   $upgrade_needed = false
                 }
                 else {
@@ -59,19 +59,19 @@ class vmtools_win (
                 }
               }
               else {
-                notify {'No minimum minor version parameter provided, assuming same minor version and falling back to $upgrade_if_same_major_minor behavior':}
+                info ('No minimum minor version parameter provided, assuming same minor version and falling back to $upgrade_if_same_major_minor behavior')
                 if $upgrade_if_same_major_minor {
                   notify {'Installed VMware Tools is the same major and assumed minor version, but a different build. $upgrade_if_same_major_minor is enabled -> upgrade needed':}
                   $upgrade_needed = true
                 }
                 else {
-                  notify {'Installed VMware Tools is the same major and assumed minor version, but a different build. $upgrade_if_same_major_minor is disabled -> no upgrade needed':}
+                  info ('Installed VMware Tools is the same major and assumed minor version, but a different build. $upgrade_if_same_major_minor is disabled -> no upgrade needed')
                   $upgrade_needed = false
                 }
               }
             }
             elsif (0 + $facts['vmtools_win_versionmajor']) > $minimum_major_version {
-              notify {'Installed version is higher major version vs the required minimum major version -> no upgrade needed':}
+              info ('Installed version is higher major version vs the required minimum major version -> no upgrade needed')
               $upgrade_needed = false
             }
             else {
@@ -79,13 +79,13 @@ class vmtools_win (
             }
           }
           else {
-            notify {'No minimum major version parameter provided, assuming same major and minor version and falling back to $upgrade_if_same_major_minor behavior':}
+            info ('No minimum major version parameter provided, assuming same major and minor version and falling back to $upgrade_if_same_major_minor behavior')
             if $upgrade_if_same_major_minor {
               notify {'Installed VMware Tools is assumed the same major and minor version, but a different build. $upgrade_if_same_major_minor is enabled -> upgrade needed':}
               $upgrade_needed = true
             }
             else {
-              notify {'Installed VMware Tools is assumed the same major and minor version, but a different build. $upgrade_if_same_major_minor is disabled -> no upgrade needed':}
+              info ('Installed VMware Tools is assumed the same major and minor version, but a different build. $upgrade_if_same_major_minor is disabled -> no upgrade needed')
               $upgrade_needed = false
             }
           }
