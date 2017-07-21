@@ -1,0 +1,3 @@
+write-host "vmtools_win_versionfull=$((Get-ChildItem -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall | get-itemproperty | select DisplayName, DisplayVersion | ? DisplayName -eq "VMware Tools" | select DisplayVersion).DisplayVersion)"
+write-host "vmtools_win_versionmajor=$((Get-ChildItem -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall | get-itemproperty | select DisplayName, VersionMajor | ? DisplayName -eq "VMware Tools" | select VersionMajor).VersionMajor)"
+write-host "vmtools_win_versionminor=$((Get-ChildItem -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall | get-itemproperty | select DisplayName, VersionMinor | ? DisplayName -eq "VMware Tools" | select VersionMinor).VersionMinor)"
