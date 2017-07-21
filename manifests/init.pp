@@ -15,6 +15,7 @@ class vmtools_win (
     notify ('An existing version of VMware Tools is currently installed, checking if it needs to be upgraded...')
     if $use_packages_vmware_com {
       #TBD logic for checking version against online
+      #https://packages.vmware.com/tools/esx/latest/windows/index.html
     }
     else {
       #Check against self-provided VMware Tools installation package
