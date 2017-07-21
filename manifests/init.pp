@@ -33,7 +33,7 @@ class vmtools_win (
               notify ('Installed VMware Tools is a lower major version vs the required minimum major version -> upgrade needed')
               $upgrade_needed = true
             }
-            elsif (0 + $facts['vmtools_win_versionmajor']) = $minimum_major_version {
+            elsif (0 + $facts['vmtools_win_versionmajor']) == $minimum_major_version {
               notify ('Installed VMware Tools is the same major version vs the required minimum major version; check minor version...')
               if $minimum_minor_version {
                 notify ('Minimum minor version parameter provided, check against node...')
@@ -41,7 +41,7 @@ class vmtools_win (
                   notify ('Installed VMware Tools is a lower minor version vs the required minimum minor version -> upgrade needed')
                   $upgrade_needed = true
                 }
-                elsif (0 + $facts['vmtools_win_versionminor']) = $minimum_minor_version {
+                elsif (0 + $facts['vmtools_win_versionminor']) == $minimum_minor_version {
                   #Installed version same major and minor version, but older or newer build; check $upgrade_if_same_major_minor parameter
                   if $upgrade_if_same_major_minor {
                     notify ('Installed VMware Tools is the same major and minor version, but a different build. $upgrade_if_same_major_minor is enabled -> upgrade needed')
