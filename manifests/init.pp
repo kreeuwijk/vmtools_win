@@ -3,7 +3,7 @@ class vmtools_win (
   $local_temp_folder            = 'C:/Windows/Temp',
   $selfprovided_install_file    = undef,   #example: 'VMware-tools-10.1.7-5541682-x86_64.exe'
   $selfprovided_install_version = undef,   #example: '10.1.7.5541682'
-  $selfprovided_alt_source      = undef,   #example: 'puppet:///filerepo'
+  $selfprovided_file_source     = undef,   #example: 'puppet:///filerepo'
   $minimum_major_version        = undef,   #example: 10
   $minimum_minor_version        = undef,   #example: 1
   $upgrade_if_same_major_minor  = false,
@@ -23,7 +23,7 @@ class vmtools_win (
       }
       else {
         info ('Installed version does not match desired version, determining if upgrade is needed...')
-        if ($selfprovided_install_file) and ($selfprovided_install_version) {
+        if ($selfprovided_file_source) and ($selfprovided_install_file) and ($selfprovided_install_version) {
           #Required parameters are provided, continue processing...
           if $minimum_major_version {
             info ('Minimum major version parameter provided, check major version against node...')
@@ -91,7 +91,7 @@ class vmtools_win (
           }
         }
         else {
-          fail ('You have to provide values for the $selfprovided_install_file and $selfprovided_install_version parameters when you set $use_packages_vmware_com to false!')
+          fail ('You have to provide values for the $selfprovided_file_source, $selfprovided_install_file and $selfprovided_install_version parameters when you set $use_packages_vmware_com to false!')
         }
       }
     }
@@ -108,10 +108,7 @@ class vmtools_win (
     else {
       file { "${local_temp_folder}/${selfprovided_install_file}":
         ensure => present,
-        source => [
-          "puppet:///modules/${selfprovided_install_file}",
-          "${selfprovided_alt_source}/${selfprovided_install_file}"
-          ],
+        source => "${selfprovided_file_source}/${selfprovided_install_file}",
         before => Package['VMwareTools_Windows'],
       }
       package { 'VMwareTools_Windows':
