@@ -8,8 +8,6 @@ class vmtools_win (
   $minimum_minor_version        = undef,   #example: 1
   $upgrade_if_same_major_minor  = false,
 ){
-  $upgrade_needed = false
-  
   if (0 + $facts['vmtools_win_versionmajor']) > 0 {
     #Some version of VMware Tools must be installed...
     notify {'An existing version of VMware Tools is currently installed, checking if it needs to be upgraded...':}
