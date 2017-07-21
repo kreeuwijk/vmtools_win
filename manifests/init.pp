@@ -113,7 +113,7 @@ class vmtools_win (
         source => [
           "puppet:///modules/${selfprovided_install_file}",
           "${selfprovided_alt_source}/${selfprovided_install_file}"
-          ]
+          ],
         before => Package['VMwareTools_Windows'],
       }
       package { 'VMwareTools_Windows':
