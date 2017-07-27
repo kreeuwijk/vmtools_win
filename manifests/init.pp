@@ -1,28 +1,42 @@
 #Example usage in your profile:
-#  class {'profile::vmtools_win':
-#    use_packages_vmware_com      => false,
-#    local_temp_folder            => 'C:/Windows/Temp',
-#    selfprovided_install_file    => 'VMware-tools-10.1.7-5541682-x86_64.exe',
-#    selfprovided_install_version => '10.1.7.5541682',
-#    selfprovided_file_source     => 'puppet:///filerepo',
-#    minimum_version_level        => 3,
+#  class profile::windows::vmwaretools {
+#    class {'vmtools_win':
+#      download_from_vmware         => false,
+#      local_temp_folder            => 'C:/Windows/Temp',
+#      selfprovided_install_file    => 'VMware-tools-10.1.7-5541682-x86_64.exe',
+#      selfprovided_install_version => '10.1.7.5541682',
+#      selfprovided_file_source     => 'puppet:///filerepo',
+#      minimum_version_level        => 3,
+#      prevent_reboot               => true,
+#      logfile_location             => '%TEMP%\vmmsi.log',
+#      components_to_install        => 'ALL',
+#      components_to_remove         => 'Hgfs',
+#    }
 #  }
 
 # 'minimum_version_level' determines up to which point you want to force upgrades when an existing version is found.
-# when setting this level to 3 with a selfprovided_install_version of '10.1.7.5541682', this module will not upgrade other 10.1.7 builds, only 10.1.6 and lower.
+# When setting this level to 3 with a selfprovided_install_version of '10.1.7.5541682', this module will check up to three levels down.
+# As a result it would not upgrade other 10.1.7 builds, only 10.1.6 and lower.
+# To only check for 10.1 builds for example, set the minimum_version_level to 2.
+# To force upgrade to the exact build, set minimum_version_level to 4.
+# Downgrades will not be performed as this will cause duplicate installs of VMware Tools.
 
 class vmtools_win (
-  $use_packages_vmware_com      = false,
+  $download_from_vmware         = false,
   $local_temp_folder            = 'C:/Windows/Temp',
   $selfprovided_install_file    = undef,   #example: 'VMware-tools-10.1.7-5541682-x86_64.exe'
   $selfprovided_install_version = undef,   #example: '10.1.7.5541682'
   $selfprovided_file_source     = undef,   #example: 'puppet:///filerepo'
   $minimum_version_level        = 3,
+  $prevent_reboot               = true,
+  $logfile_location             = undef,
+  $components_to_install        = 'ALL',
+  $components_to_remove         = undef,
 ){
   if length($facts['vmtools_win_version']) > 0 {
     #Some version of VMware Tools must be installed...
     info ('An existing version of VMware Tools is currently installed, checking if it needs to be upgraded...')
-    if $use_packages_vmware_com {
+    if $download_from_vmware {
       #TBD logic for checking version against online
       #https://packages.vmware.com/tools/esx/latest/windows/index.html
     }
@@ -66,19 +80,50 @@ class vmtools_win (
   }
   
   if $upgrade_needed {
-    if $use_packages_vmware_com {
+    if $download_from_vmware {
       #TBD logic for installing from packages.vmware.com
     }
     else {
+      $install_options_base       = ['/S', '/v"/qn']
+      
+      if $logfile_location {
+        $install_options_log1   = '/l*v'
+        $install_options_log2   = "\"\"${logfile_location}\"\""
+      }
+      else {
+        $install_options_log1   = ""
+        $install_options_log2   = ""
+      }
+      
+      if $prevent_reboot {
+        $install_options_reboot = 'REBOOT=ReallySuppress'
+      }
+      else {
+        $install_options_reboot = 'REBOOT=Suppress'
+      }
+      
+      if $components_to_remove {
+        $install_options_add    = "ADDLOCAL=${components_to_install}"
+        $install_options_remove = "REMOVE=${components_to_remove}\""
+      }
+      else {
+        $install_options_add    = "ADDLOCAL=${components_to_install}\""
+        $install_options_remove = ""
+      }
+      
+      $install_options_extra = split("${install_options_log1} ${install_options_log2} ${install_options_reboot} ${install_options_add} ${install_options_remove}", '\s+')
+      $install_options = concat($install_options_base, $install_options_extra)
+      
       file { "${local_temp_folder}/${selfprovided_install_file}":
         ensure => present,
         source => "${selfprovided_file_source}/${selfprovided_install_file}",
         before => Package['VMwareTools_Windows'],
       }
       package { 'VMwareTools_Windows':
-        ensure => present,
-        source => "${local_temp_folder}/${selfprovided_install_file}",
-        install_options => ['/S', '/v"/qn', '/l*v', '""%TEMP%\vmmsi.log""', 'REBOOT=R', 'ADDLOCAL=ALL', 'REMOVE=Hgfs"'],
+        ensure          => present,
+        provider        => windows,
+        source          => "${local_temp_folder}/${selfprovided_install_file}",
+        install_options => $install_options,
       } 
     }
   }
