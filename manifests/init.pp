@@ -38,7 +38,7 @@ class vmtools_win (
     info ('An existing version of VMware Tools is currently installed, checking if it needs to be upgraded...')
     if $download_from_vmware {
       #Check if online facts are provisioned, which means this host's internet connection is working
-      unless ($facts['vmtools_win_online_version']) and ($facts['vmtools_win_online_href']) {
+      unless ($facts['vmtools_win_online_version']) and ($facts['vmtools_win_online_file']) {
         fail ('$download_from_vmware was set to true but this host is not able to access http://packages.vmware.com!')
       }
       #Check against online VMware Tools installation package
