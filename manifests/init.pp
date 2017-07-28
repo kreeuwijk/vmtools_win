@@ -82,17 +82,17 @@ class vmtools_win (
     $upgrade_needed = true
   }
 
-  if $upgrade_needed {
-    #Build values for installation
-    if $download_from_vmware {
-      $file_source = 'http://packages.vmware.com/tools/releases/latest/windows/x64'
-      $file_name   = $facts['vmtools_win_online_file']
-    }
-    else {
-      $file_source = $selfprovided_file_source
-      $file_name   = $selfprovided_install_file
-    }
+  #Build values for installation or cleanup
+  if $download_from_vmware {
+    $file_source = 'http://packages.vmware.com/tools/releases/latest/windows/x64'
+    $file_name   = $facts['vmtools_win_online_file']
+  }
+  else {
+    $file_source = $selfprovided_file_source
+    $file_name   = $selfprovided_install_file
+  }
 
+  if $upgrade_needed {
     #Build installation parameters
     $install_options_base       = ['/S', '/v"/qn']
 
@@ -135,6 +135,12 @@ class vmtools_win (
       provider        => windows,
       source          => "${local_temp_folder}/${file_name}",
       install_options => $install_options,
+    }
+  }
+  else {
+    #Cleanup installation file
+    file { "${local_temp_folder}/${file_name}":
+      ensure => absent,
     }
   }
 }
