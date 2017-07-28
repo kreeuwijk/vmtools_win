@@ -5,17 +5,17 @@ function vmtools_win::compare_version(String $givenversion, String $desiredversi
   #
   #  returns: { 'lower' => 3 }
   #  This signifies that the 3rd level of the given version ('5') is lower than the desired version ('7'), with all previous levels being the same
-  
+
   #Split given version into levels of numbers
   $arrGivenversion   = split($givenversion, '[.]')
   $arrDesiredversion = split($desiredversion, '[.]')
-  
+
   #Determine size of arrays and use smallest size for comparison
   $lenArrGiven   = size($arrGivenversion)
   $lenArrDesired = size($arrDesiredversion)
 
   $levelstocompare = min($lenArrGiven, $lenArrDesired) - 1
-  
+
   $level = $arrGivenversion.reduce(0) |$memo, $value| {
     if $arrGivenversion[$memo] == $arrDesiredversion[$memo] {
       if $memo == $levelstocompare {
@@ -29,14 +29,14 @@ function vmtools_win::compare_version(String $givenversion, String $desiredversi
       $memo
     }
   }
-  
+
   if $arrGivenversion[$level] == $arrDesiredversion[$level] {
     $direction = "Equal"
   }
-  elsif $arrGivenversion[$level] > $arrDesiredversion[$level] {
+  elsif (0 + $arrGivenversion[$level]) > (0 + $arrDesiredversion[$level]) {
     $direction = "Higher"
   }
-  elsif $arrGivenversion[$level] < $arrDesiredversion[$level] {
+  elsif (0 + $arrGivenversion[$level]) < (0 + $arrDesiredversion[$level]) {
     $direction = "Lower"
   }
   else {
@@ -44,6 +44,5 @@ function vmtools_win::compare_version(String $givenversion, String $desiredversi
   }
 
   $hash = {$direction => $level + 1}
-  $hash
-  
+  $hash 
 }
