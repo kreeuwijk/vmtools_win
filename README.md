@@ -143,8 +143,6 @@ Windows x64 Operating Systems. Tested on:
 
 ## Development
 
-Please see [CONTRIBUTING.md](CONTRIBUTING.md) for information on how to contribute.
-
 Copyright (C) 2017 Kevin Reeuwijk <kevinr@puppet.com>
 
 Licensed under the Apache License, Version 2.0.
