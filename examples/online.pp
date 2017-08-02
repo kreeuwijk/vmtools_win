@@ -1,8 +1,5 @@
 class {'vmtools_win':
-  minimum_version_level        => 3,
-  prevent_reboot               => true,
   logfile_location             => '%TEMP%\vmmsi.log',
-  components_to_install        => 'ALL',
   components_to_remove         => 'Hgfs',
 }
 
