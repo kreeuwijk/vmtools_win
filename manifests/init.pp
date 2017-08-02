@@ -71,6 +71,18 @@ class vmtools_win (
     }
 
     if $upgrade_needed {
+      if $download_from_vmware {
+        unless ($facts['vmtools_win_online_version']) and ($facts['vmtools_win_online_file']) {
+          fail ('download_from_vmware was set to true but this host is not able to access http://packages.vmware.com!')
+        }
+      }
+      else {
+        #Perform validation of self provided package parameters
+        unless ($selfprovided_install_file) and ($selfprovided_install_version) and ($selfprovided_file_source) {
+          fail ('You have to provide values for the $selfprovided_file_source, $selfprovided_install_file and $selfprovided_install_version parameters when you set use_packages_vmware_com to false!')
+        }
+      }
+
       #Build installation parameters
       $install_options_base       = ['/S', '/v"/qn']
 
