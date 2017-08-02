@@ -1,4 +1,4 @@
-$packagestore = "http://packages.vmware.com/tools/releases/latest/windows/x641"
+$packagestore = "http://packages.vmware.com/tools/releases/latest/windows/x64"
 $success = $false
 
 if (Get-Command 'Invoke-WebRequest' -ErrorAction SilentlyContinue) {
