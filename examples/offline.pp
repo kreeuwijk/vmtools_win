@@ -1,13 +1,9 @@
 class {'vmtools_win':
   download_from_vmware         => false,
-  local_temp_folder            => 'C:/Windows/Temp',
   selfprovided_install_file    => 'VMware-tools-10.1.7-5541682-x86_64.exe',
   selfprovided_install_version => '10.1.7.5541682',
   selfprovided_file_source     => 'puppet:///filerepo',
-  minimum_version_level        => 3,
-  prevent_reboot               => true,
   logfile_location             => '%TEMP%\vmmsi.log',
-  components_to_install        => 'ALL',
   components_to_remove         => 'Hgfs',
 }
 
