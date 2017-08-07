@@ -20,7 +20,7 @@ class vmtools_win (
     }
     else {
       #Perform validation of self provided package parameters
-      if ($selfprovided_install_file == 'None') and ($selfprovided_install_version == 'None') and ($selfprovided_file_source == 'None') {
+      if ($selfprovided_install_file == 'None') or ($selfprovided_install_version == 'None') or ($selfprovided_file_source == 'None') {
         fail ('You have to provide values for the selfprovided_file_source, selfprovided_install_file and selfprovided_install_version parameters when you set use_packages_vmware_com to false!')
       }
     }
