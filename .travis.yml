@@ -1,8 +1,21 @@
 ---
 language: ruby
 sudo: false
-env:
-  - PUPPET_GEM_VERSION="~> 4.10.0"
-rvm:
-  - 2.4.0
+branches:
+  only:
+    - master
 script: puppet parser validate .
+matrix:
+  fast_finish: true
+  include:
+  - rvm: 2.4.0
+    env: PUPPET_GEM_VERSION="~> 4.7.0"
+  - rvm: 2.4.0
+    env: PUPPET_GEM_VERSION="~> 4.8.0"
+  - rvm: 2.4.0
+    env: PUPPET_GEM_VERSION="~> 4.9.0"
+  - rvm: 2.4.0
+    env: PUPPET_GEM_VERSION="~> 4.10.0"
+notifications:
+  email:
+    - kevinr@puppet.com
