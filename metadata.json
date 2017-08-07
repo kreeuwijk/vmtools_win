@@ -1,6 +1,6 @@
 {
   "name": "kreeuwijk-vmtools_win",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "kreeuwijk",
   "summary": "Install VMware Tools for Windows on VMware guests.",
   "license": "Apache-2.0",
@@ -19,7 +19,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">=4.7.0 <6.0.0"
+      "version_requirement": ">=4.8.0 <6.0.0"
     }
   ]
 }
