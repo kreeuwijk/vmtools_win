@@ -51,18 +51,5 @@ function vmtools_win::install_needed() >> Boolean {
       notify {'There are currently no VMware Tools installed -> install needed':}
       return true
     }
-    if $upgrade_needed {
-      if vmtools_win::download_from_vmware {
-        unless ($facts['vmtools_win_online_version']) and ($facts['vmtools_win_online_file']) {
-          fail ('vmtools_win::download_from_vmware was set to true but this host is not able to access http://packages.vmware.com!')
-        }
-      }
-      else {
-        #Perform validation of self provided package parameters
-        unless (vmtools_win::selfprovided_install_file) and (vmtools_win::selfprovided_install_version) and (vmtools_win::selfprovided_file_source) {
-          fail ('You have to provide values for the vmtools_win::selfprovided_file_source, vmtools_win::selfprovided_install_file and vmtools_win::selfprovided_install_version parameters when you set vmtools_win::use_packages_vmware_com to false!')
-        }
-      }
-    }
   }
 }
