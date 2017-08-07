@@ -1,5 +1,7 @@
 # VMware Tools for Windows
 
+[![Build Status](https://secure.travis-ci.org/kreeuwijk/vmtools_win.png?branch=master)](http://travis-ci.org/kreeuwijk/vmtools_win)
+
 #### Table of Contents
 
 1. [Overview](#overview)
