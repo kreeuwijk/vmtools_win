@@ -1,0 +1,11 @@
+---
+vmtools_win::download_from_vmware: true
+vmtools_win::local_temp_folder: C:/Windows/Temp
+vmtools_win::selfprovided_install_file: None
+vmtools_win::selfprovided_install_version: None
+vmtools_win::selfprovided_file_source: None
+vmtools_win::minimum_version_level: 3
+vmtools_win::prevent_reboot: true
+vmtools_win::logfile_location: None
+vmtools_win::components_to_install: ALL
+vmtools_win::components_to_remove: None
