@@ -1,4 +1,4 @@
-function vmtools_win::install_needed($download_from_vmware, $minimum_version_level, $selfprovided_install_version = 'None') >> Boolean {
+function vmtools_win::install_needed($download_from_vmware, $minimum_version_level, $selfprovided_install_version) >> Boolean {
   #This function returns true if there are either older or no VMware Tools installed.
   #This function also does some sanity checking on needed parameters and will fail compilation if they aren't provided
 
