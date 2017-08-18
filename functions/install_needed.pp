@@ -1,4 +1,4 @@
-function vmtools_win::install_needed($download_from_vmware, $minimum_version_level, $selfprovided_install_version) >> Boolean {
+function vmtools_win::install_needed($download_from_vmware, $minimum_version_level, $selfprovided_install_version) {
   #This function returns true if there are either older or no VMware Tools installed.
   #This function also does some sanity checking on needed parameters and will fail compilation if they aren't provided
 
@@ -24,30 +24,31 @@ function vmtools_win::install_needed($download_from_vmware, $minimum_version_lev
     #Now let's check if we need to upgrade, based on the returned $comparison hash
     if has_key($comparison, 'Equal') {
       info ('Installed version is desired version -> no upgrade needed')
-      return false
+      $install_needed = false
     }
     elsif has_key($comparison, 'Lower') {
       info ('Installed version is lower version, checking if its below or above the minimum_version_level...')
       if $comparison['Lower'] <= $minimum_version_level {
         notify {'Installed version is lower version at or below the vmtools_win::minimum_version_level -> upgrade needed':}
-        return true
+        $install_needed = true
       }
       if $comparison['Lower'] > $minimum_version_level {
         info ('Installed version is lower version but not at the vmtools_win::minimum_version_level -> no upgrade needed')
-        return false
+        $install_needed = false
       }
     }
     elsif has_key($comparison, 'Higher') {
       info ('Installed version is higher version -> no upgrade needed')
-      return false
+      $install_needed = false
     }
     else {
       info ('Unable to determine version comparison, skipping installation')
-      return false
+      $install_needed = false
     }
   }
   else {
     notify {'There are currently no VMware Tools installed -> install needed':}
-    return true
+    $install_needed = true
   }
+  $install_needed
 }
