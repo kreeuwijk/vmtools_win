@@ -24,30 +24,30 @@ function vmtools_win::install_needed($download_from_vmware, $minimum_version_lev
     #Now let's check if we need to upgrade, based on the returned $comparison hash
     if has_key($comparison, 'Equal') {
       info ('Installed version is desired version -> no upgrade needed')
-      false
+      'no'
     }
     elsif has_key($comparison, 'Lower') {
       info ('Installed version is lower version, checking if its below or above the minimum_version_level...')
       if $comparison['Lower'] <= $minimum_version_level {
         notify {'Installed version is lower version at or below the vmtools_win::minimum_version_level -> upgrade needed':}
-        true
+        'yes'
       }
       if $comparison['Lower'] > $minimum_version_level {
         info ('Installed version is lower version but not at the vmtools_win::minimum_version_level -> no upgrade needed')
-        false
+        'no'
       }
     }
     elsif has_key($comparison, 'Higher') {
       info ('Installed version is higher version -> no upgrade needed')
-      false
+      'no'
     }
     else {
       info ('Unable to determine version comparison, skipping installation')
-      false
+      'no'
     }
   }
   else {
     notify {'There are currently no VMware Tools installed -> install needed':}
-    true
+    'yes'
   }
 }
