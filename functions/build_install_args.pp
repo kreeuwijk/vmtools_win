@@ -1,4 +1,4 @@
-function vmtools_win::build_install_args($logfile_location, $prevent_reboot, $components_to_install, $components_to_remove) >> Array {
+function vmtools_win::build_install_args($logfile_location, $prevent_reboot, $components_to_install, $components_to_remove) {
   $install_options_base     = ['/S', '/v"/qn']
 
   if $logfile_location == 'None' {
