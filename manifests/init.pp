@@ -35,7 +35,7 @@ class vmtools_win (
       $file_name   = $selfprovided_install_file
     }
 
-    if vmtools_win::install_needed($download_from_vmware, $minimum_version_level, $selfprovided_install_version) == 'yes' {
+    if vmtools_win::install_needed($download_from_vmware, $minimum_version_level, $selfprovided_install_version) {
       $install_options = vmtools_win::build_install_args($logfile_location, $prevent_reboot, $components_to_install, $components_to_remove)
 
       #Install VMware Tools
