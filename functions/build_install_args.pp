@@ -28,5 +28,5 @@ function vmtools_win::build_install_args($logfile_location, $prevent_reboot, $co
 
   $install_options_extra = split("${install_options_log1} ${install_options_log2} ${install_options_reboot} ${install_options_add} ${install_options_remove}", '\s+')
   $install_options = Array.assert_type(concat($install_options_base, $install_options_extra))
-  return $install_options
+  $install_options
 }
