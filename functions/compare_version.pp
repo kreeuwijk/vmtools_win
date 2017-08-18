@@ -1,4 +1,4 @@
-function vmtools_win::compare_version(String $givenversion, String $desiredversion) >> Hash {
+function vmtools_win::compare_version(String $givenversion, String $desiredversion) {
   #This function compares two provided version numbers (dot-seperated) and returns the lowest level at which they differ and in which direction
   #Example:
   #  vmtools_win::compare_version('10.1.5.5051234', '10.1.7.5541682')
