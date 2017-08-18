@@ -1,9 +1,6 @@
 ---
 language: ruby
 sudo: false
-branches:
-  only:
-    - master
 script: puppet parser validate .
 matrix:
   fast_finish: true
