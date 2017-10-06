@@ -59,13 +59,13 @@ All interaction with the vmtools_win module can be done through the main vmtools
 To allow the latest x.y.z version (e.g. 10.1.10 regardless of specific build number) on packages.vmware.com to be installed, while preventing any automatic reboots, simply include the class:
 
 ```puppet
-include vmtools_win
+class { 'vmtools_win': }
 ```
 
 To set the specific level at which version checking is performed, set the following parameter:
 
 ```puppet
-class { 'vmwaretools':
+class { 'vmtools_win':
   minimum_version_level => 2,
 }
 ```
@@ -79,7 +79,7 @@ The levels have the following effect:
 To allow reboots when required after installation:
 
 ```puppet
-class { 'vmwaretools':
+class { 'vmtools_win':
   prevent_reboot => false,
 }
 ```
@@ -87,7 +87,7 @@ class { 'vmwaretools':
 To use a self-provided version of VMware Tools that you've made available on the Puppet Master:
 
 ```puppet
-class { 'vmwaretools':
+class { 'vmtools_win':
   selfprovided_install_file    => 'VMware-tools-10.1.7-5541682-x86_64.exe',
   selfprovided_install_version => '10.1.7.5541682',
   selfprovided_file_source     => 'puppet:///yourcustomrepository',
