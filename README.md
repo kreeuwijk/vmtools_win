@@ -56,7 +56,7 @@ include vmtools_win
 
 All interaction with the vmtools_win module can be done through the main vmtools_win class. This means you can simply toggle the options in ::vmtools_win to have full functionality of the module.
 
-To allow the latest x.y.z version (e.g. 10.1.10 regardless of specific build number) on packages.vmware.com to be installed, while preventing any automatic reboots, simply include the class:
+To allow the latest x.y.z version (e.g. 10.1.10 regardless of specific build number) on packages.vmware.com to be installed, while preventing any automatic reboots, simply include or instantiate the class:
 
 ```puppet
 class { 'vmtools_win': }
