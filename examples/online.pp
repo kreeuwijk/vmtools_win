@@ -1,6 +1,6 @@
 class {'vmtools_win':
-  logfile_location             => '%TEMP%\vmmsi.log',
-  components_to_remove         => 'Hgfs',
+  logfile_location     => '%TEMP%\vmmsi.log',
+  components_to_remove => 'Hgfs',
 }
 
 # 'minimum_version_level' determines up to which point you want to force upgrades when an existing version is found.

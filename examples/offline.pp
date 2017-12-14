@@ -2,7 +2,7 @@ class {'vmtools_win':
   download_from_vmware         => false,
   selfprovided_install_file    => 'VMware-tools-10.1.7-5541682-x86_64.exe',
   selfprovided_install_version => '10.1.7.5541682',
-  selfprovided_file_source     => 'puppet:///filerepo',
+  selfprovided_file_source     => 'http://server/file',
   logfile_location             => '%TEMP%\vmmsi.log',
   components_to_remove         => 'Hgfs',
 }
