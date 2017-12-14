@@ -1,19 +1,24 @@
 {
   "name": "kreeuwijk-vmtools_win",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "kreeuwijk",
-  "summary": "Install VMware Tools for Windows on VMware guests.",
+  "summary": "Deploys & manages VMware Tools for Windows on VMware guests.",
   "license": "Apache-2.0",
+  "source": "https://github.com/kreeuwijk/vmtools_win.git",
   "project_page": "https://github.com/kreeuwijk/vmtools_win",
   "issues_url": "https://github.com/kreeuwijk/vmtools_win/issues",
-  "tags": [ "virtualization", "vmware", "vmware-tools", "vmware_tools", "vmtools" ],
-  "source": "https://github.com/kreeuwijk/vmtools_win.git",
   "dependencies": [
+
   ],
   "operatingsystem_support": [
     {
       "operatingsystem": "Windows",
-      "operatingsystemrelease": [ "2008 r2", "2012", "2012 R2", "2016" ]
+      "operatingsystemrelease": [
+        "2008 r2",
+        "2012",
+        "2012 R2",
+        "2016"
+      ]
     }
   ],
   "requirements": [
@@ -21,5 +26,14 @@
       "name": "puppet",
       "version_requirement": ">=4.7.0 <6.0.0"
     }
-  ]
+  ],
+  "tags": [
+    "virtualization",
+    "vmware",
+    "vmware-tools",
+    "vmware_tools",
+    "vmtools"
+  ],
+  "template-url": "file:///opt/puppetlabs/pdk/share/cache/pdk-templates.git",
+  "template-ref": "heads/master-0-gf513a64"
 }
