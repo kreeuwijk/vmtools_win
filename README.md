@@ -1,6 +1,8 @@
 # VMware Tools for Windows
 
 [![Build Status](https://secure.travis-ci.org/kreeuwijk/vmtools_win.png?branch=master)](http://travis-ci.org/kreeuwijk/vmtools_win)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/kreeuwijk/vmtools_win.svg)](https://forge.puppetlabs.com/kreeuwijk/vmtools_win)
+[![Puppet Forge Downloads](http://img.shields.io/puppetforge/dt/kreeuwijk/vmtools_win.svg)](https://forge.puppetlabs.com/kreeuwijk/vmtools_win)
 
 #### Table of Contents
 
