@@ -35,5 +35,6 @@
     "vmtools"
   ],
   "template-url": "file:///opt/puppetlabs/pdk/share/cache/pdk-templates.git",
-  "template-ref": "heads/master-0-gf513a64"
+  "template-ref": "heads/master-0-g033771c",
+  "pdk-version": "1.5.0.pre (ga170dad)"
 }
