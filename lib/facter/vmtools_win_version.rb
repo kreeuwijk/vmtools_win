@@ -10,6 +10,6 @@ Facter.add('vmtools_win_version') do
       'vmtools_win',
       'vmtools_win_version.ps1',
     )
-    JSON.parse(Facter::Util::Resolution.exec("#{powershell} -ExecutionPolicy Unrestricted -File #{checker_script}"))
+    Facter::Util::Resolution.exec("#{powershell} -ExecutionPolicy Unrestricted -File #{checker_script}")
   end
 end
