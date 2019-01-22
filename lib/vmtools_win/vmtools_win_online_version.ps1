@@ -25,6 +25,5 @@ if ($success) {
     }
     $package        = $packageHref.Split('/')[1]
     $packageversion = [regex]::Match($package, '^(\D*)(\d*.\d*.\d*-\d*)(-.*exe)$').Groups[2].Value -replace "-","."
-    $packagelink    = "$package"
     Write-Output $packageversion
 }
