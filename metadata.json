@@ -1,6 +1,6 @@
 {
   "name": "kreeuwijk-vmtools_win",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": "kreeuwijk",
   "summary": "Deploys & manages VMware Tools for Windows on VMware guests.",
   "license": "Apache-2.0",
@@ -24,7 +24,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">=4.7.0 <6.0.0"
+      "version_requirement": ">=4.7.0 <7.0.0"
     }
   ],
   "tags": [
@@ -35,6 +35,6 @@
     "vmtools"
   ],
   "template-url": "file:///opt/puppetlabs/pdk/share/cache/pdk-templates.git",
-  "template-ref": "1.6.0-0-gf5564c0",
-  "pdk-version": "1.6.0"
+  "template-ref": "1.8.0-0-g0d9da00",
+  "pdk-version": "1.8.0"
 }
