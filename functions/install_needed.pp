@@ -2,7 +2,7 @@ function vmtools_win::install_needed($download_from_vmware, $minimum_version_lev
   #This function returns true if there are either older or no VMware Tools installed.
   #This function also does some sanity checking on needed parameters and will fail compilation if they aren't provided
 
-  if $facts['vmtools_win_version'] {
+  if !empty($facts['vmtools_win_version']) {
     #Some version of VMware Tools must be installed...
     info ('An existing version of VMware Tools is currently installed, checking if it needs to be upgraded...')
     if $download_from_vmware {
