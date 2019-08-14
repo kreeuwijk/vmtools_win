@@ -1,3 +1,6 @@
+# Class: vmtools_win
+# Installs the VMware Tools on VMware VMs, if they are not installed or out of date
+#
 class vmtools_win (
   # default values are in vmtools_win/data
   $download_from_vmware,
