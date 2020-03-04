@@ -3,5 +3,10 @@
 # Facts specified here will override the values provided by rspec-puppet-facts.
 ---
 ipaddress: "172.16.254.254"
+ipaddress6: "FE80:0000:0000:0000:AAAA:AAAA:AAAA"
 is_pe: false
 macaddress: "AA:AA:AA:AA:AA:AA"
+vmtools_win_online_version: 11.0.5.15389592
+vmtools_win_online_file: VMware-tools-11.0.5-15389592-x86_64.exe
+vmtools_win_version: 9.0.0.12345678
+virtual: vmware
