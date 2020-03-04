@@ -1,6 +1,6 @@
 {
   "name": "kreeuwijk-vmtools_win",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "author": "kreeuwijk",
   "summary": "Deploys & manages VMware Tools for Windows on VMware guests.",
   "license": "Apache-2.0",
@@ -8,23 +8,27 @@
   "project_page": "https://github.com/kreeuwijk/vmtools_win",
   "issues_url": "https://github.com/kreeuwijk/vmtools_win/issues",
   "dependencies": [
-
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">= 4.19.0 < 7.0.0"
+    }
   ],
   "operatingsystem_support": [
     {
       "operatingsystem": "Windows",
       "operatingsystemrelease": [
-        "2008 r2",
         "2012",
         "2012 R2",
-        "2016"
+        "2016",
+        "2019",
+        "10"
       ]
     }
   ],
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">=4.7.0 <7.0.0"
+      "version_requirement": ">=4.7.0 <8.0.0"
     }
   ],
   "tags": [
@@ -34,7 +38,7 @@
     "vmware_tools",
     "vmtools"
   ],
-  "template-url": "pdk-default#1.12.0",
-  "template-ref": "1.12.0-0-g55d9ae2",
-  "pdk-version": "1.12.0"
+  "template-url": "pdk-default#1.17.0",
+  "template-ref": "tags/1.17.0-0-gd3a4319",
+  "pdk-version": "1.17.0"
 }
