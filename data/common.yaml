@@ -1,4 +1,5 @@
 ---
+vmtools_win::ensure: present
 vmtools_win::download_from_vmware: true
 vmtools_win::local_temp_folder: C:/Windows/Temp
 vmtools_win::selfprovided_install_file: None
