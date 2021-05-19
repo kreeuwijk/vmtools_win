@@ -1,5 +1,5 @@
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-$packagestore = "http://packages.vmware.com/tools/releases/latest/windows/x64"
+$packagestore = "https://packages.vmware.com/tools/releases/latest/windows/x64"
 $success = $false
 
 if (Get-Command 'Invoke-WebRequest' -ErrorAction SilentlyContinue) {
