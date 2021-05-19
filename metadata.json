@@ -1,6 +1,6 @@
 {
   "name": "kreeuwijk-vmtools_win",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "author": "kreeuwijk",
   "summary": "Deploys & manages VMware Tools for Windows on VMware guests.",
   "license": "Apache-2.0",
