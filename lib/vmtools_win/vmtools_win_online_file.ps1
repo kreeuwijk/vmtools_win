@@ -1,3 +1,4 @@
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $packagestore = "http://packages.vmware.com/tools/releases/latest/windows/x64"
 $success = $false
 
