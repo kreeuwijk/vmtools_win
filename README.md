@@ -33,7 +33,7 @@ This Puppet module manages the installation, configuration and removal of the Wi
 
 The module supports both installing the latest version from packages.vmware.com and installing any version you have downloaded yourself and made available (either on the Puppet server or somewhere else on the network).
 
-The latest v1.1.0 version now also supports uninstalling the currently installed version of the VMware Tools.
+The latest version also supports uninstalling the currently installed version of the VMware Tools.
 
 ## Setup
 

@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 1.1.2
+
+**Features**
+* Update changelog and readme
+
+## Release 1.1.1
+
+**Features**
+* Switches to using HTTPS download locations and enables TLSv1.2 support in Powershell for the content checks
+* Updates PDK to 2.0.0
+
 ## Release 1.1.0
 
 **Features**
