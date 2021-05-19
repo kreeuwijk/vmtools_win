@@ -20,7 +20,7 @@ class vmtools_win (
       #Sanity checks before continuing
       if $download_from_vmware {
         unless ($facts['vmtools_win_online_version']) and ($facts['vmtools_win_online_file']) {
-          fail ('download_from_vmware was set to true but this host is not able to access http://packages.vmware.com!')
+          fail ('download_from_vmware was set to true but this host is not able to access https://packages.vmware.com!')
         }
       }
       else {
@@ -32,7 +32,7 @@ class vmtools_win (
 
       #Build values for installation or cleanup
       if $download_from_vmware {
-        $file_source = 'http://packages.vmware.com/tools/releases/latest/windows/x64'
+        $file_source = 'https://packages.vmware.com/tools/releases/latest/windows/x64'
         $file_name   = $facts['vmtools_win_online_file']
       }
       else {
